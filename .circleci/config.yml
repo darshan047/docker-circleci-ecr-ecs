@@ -36,7 +36,7 @@ jobs:
               DOCKER_IMAGE='test-app'
               TASK='test-app'
               SERVICE='app-service'
-              ECR_URI="${AWS_ACCOUNT_ID//-/}.dkr.ecr.${REGION}.amazonaws.com"
+              ECR_URI="${AWS_ACCOUNT_ID//-/}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 
               # Login to AWS
               aws configure set region $AWS_REGION
