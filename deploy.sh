@@ -10,8 +10,8 @@ SHA1=`echo -n $NOW | openssl dgst -sha1 |awk '{print $NF}'`
 [[ -z "$BRANCH" ]] && { echo "must pass a branch param" ; exit 1; }
 
 # Main variables to modify for your account
-AWS_ACCOUNT_ID=XXXXXXXXXXXXXXX
-REGION='us-east-1'
+AWS_ACCOUNT_ID='8214-2118-2219'
+REGION='eu-west-2'
 CLUSTER='test-app'
 FAMILY='test-app'
 DOCKER_IMAGE='test-app'
