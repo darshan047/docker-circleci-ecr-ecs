@@ -10,16 +10,13 @@ SHA1=`echo -n $NOW | openssl dgst -sha1 |awk '{print $NF}'`
 [[ -z "$BRANCH" ]] && { echo "must pass a branch param" ; exit 1; }
 
 # Main variables to modify for your account
-AWS_ACCOUNT_ID='8214-2118-2219'
-REGION='eu-west-2'
+AWS_ACCOUNT_ID=XXXXXXXXXXXXXXX
+REGION='us-east-1'
 CLUSTER='test-app'
 FAMILY='test-app'
 DOCKER_IMAGE='test-app'
 TASK='test-app'
 SERVICE='app-service'
-ECR_URI="${AWS_ACCOUNT_ID//-/}.dkr.ecr.${REGION}.amazonaws.com"
-
-echo ${ECR_URI}
 
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
@@ -31,8 +28,8 @@ eval $(aws ecr get-login --no-include-email)
 
 # Build and push the image
 docker build -t $DOCKER_IMAGE:$VERSION .
-docker tag $DOCKER_IMAGE:$VERSION $ECR_URI/$DOCKER_IMAGE:$VERSION
-docker push $ECR_URI/$DOCKER_IMAGE:$VERSION
+docker tag $DOCKER_IMAGE:$VERSION $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$DOCKER_IMAGE:$VERSION
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com/$DOCKER_IMAGE:$VERSION
 
 # Create task for docker deploy
 task_template='[
