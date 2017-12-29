@@ -19,6 +19,8 @@ TASK='test-app'
 SERVICE='app-service'
 ECR_URI="${AWS_ACCOUNT_ID//-/}.dkr.ecr.${REGION}.amazonaws.com"
 
+echo ${ECR_URI}
+
 VERSION=$BRANCH-$SHA1
 ZIP=$VERSION.zip
 
